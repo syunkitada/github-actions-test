@@ -59,7 +59,8 @@ jobs:
         run: |
           echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
 
-      - uses: marocchino/sticky-pull-request-comment@v2
+      - name: PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            Test sticky2
+            Test sticky3
