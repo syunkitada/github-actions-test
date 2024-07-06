@@ -62,11 +62,13 @@ jobs:
       - name: PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
+          header: test1
           message: |
-            Test sticky3
+            Test sticky4
 
       - name: PR comment2
         uses: marocchino/sticky-pull-request-comment@v2
         with:
+          header: test2
           message: |
-            Test sticky2 hoge
+            Test sticky1 hoge
