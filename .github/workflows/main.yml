@@ -41,17 +41,15 @@ jobs:
         run: |
           echo "
           hoge piyo
-          ::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon
+          ::error file=app.js,line=1,col=5::Missing semicolon
           hoo bar
           ::error file=app.js,line=5,title=piyopiyo::Missing hoo
           aaa
           "
-
           echo "
           app.py:1:1: F401 'os' imported but unused
           app.py:2:1: F401 're' imported but unused
           " | scripts/convert.py
-
           echo "::debug::Set the Octocat variable"
 
       - name: Test
