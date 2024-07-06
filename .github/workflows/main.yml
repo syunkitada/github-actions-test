@@ -36,4 +36,14 @@ jobs:
           hoge piyo
           ::error file=app.js,line=1,col=5,endColumn=7::Missing semicolon
           hoo bar
+          ::error file=app.js,line=5,title=piyopiyo::Missing hoo
+          aaa
           "
+
+          echo "::debug::Set the Octocat variable"
+
+      - name: Test
+        run: |
+          echo "::group::My title"
+          echo "Inside group"
+          echo "::endgroup::"
