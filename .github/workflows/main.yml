@@ -1,0 +1,81 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      PR_URL: ${{ github.event.pull_request.html_url }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+      - name: Create annotation
+        run: |
+          echo "
+          hoge piyo
+          ::error file=app.js,line=1,col=5::Missing semicolon
+          hoo bar
+          ::error file=app.js,line=5,title=piyopiyo::Missing hoo
+          aaa
+          "
+
+      - name: Debug
+        run: echo "hoge"
+
+      - name: Create annotation2
+        run: |
+          echo "::debug::Set the Octocat variable"
+
+      - name: Create annotation3
+        run: |
+          echo "
+          app.py:1:1: F401 'os' imported but unused
+          app.py:2:1: F401 're' imported but unused
+          " | scripts/convert.py
+
+      - name: Summary
+        run: |
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+
+      # https://github.com/marketplace/actions/sticky-pull-request-comment
+      - name: PR comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: test1
+          message: |
+            Test sticky5
+
+      - name: PR comment2
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: test2
+          message: |
+            Test sticky0 hoge
