@@ -50,6 +50,9 @@ jobs:
       - name: Debug
         run: echo "hoge"
 
+      - name: Debug2
+        run: ./scripts/echo.py
+
       - name: Create annotation2
         run: |
           echo "::debug::Set the Octocat variable"
