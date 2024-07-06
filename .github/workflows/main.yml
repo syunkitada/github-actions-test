@@ -36,8 +36,8 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+      - name: Create annotation
         run: |
           echo "
           hoge piyo
@@ -46,6 +46,11 @@ jobs:
           ::error file=app.js,line=5,title=piyopiyo::Missing hoo
           aaa
           "
+
+          echo "
+          app.py:1:1: F401 'os' imported but unused
+          app.py:2:1: F401 're' imported but unused
+          " | scripts/convert.py
 
           echo "::debug::Set the Octocat variable"
 
@@ -59,6 +64,7 @@ jobs:
         run: |
           echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
 
+      # https://github.com/marketplace/actions/sticky-pull-request-comment
       - name: PR comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
