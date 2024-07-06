@@ -64,3 +64,9 @@ jobs:
         with:
           message: |
             Test sticky3
+
+      - name: PR comment2
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            Test sticky2 hoge
