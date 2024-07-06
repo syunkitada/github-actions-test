@@ -46,11 +46,16 @@ jobs:
           ::error file=app.js,line=5,title=piyopiyo::Missing hoo
           aaa
           "
+      - name: Create annotation2
+        run: |
+          echo "::debug::Set the Octocat variable"
+
+      - name: Create annotation3
+        run: |
           echo "
           app.py:1:1: F401 'os' imported but unused
           app.py:2:1: F401 're' imported but unused
           " | scripts/convert.py
-          echo "::debug::Set the Octocat variable"
 
       - name: Test
         run: |
