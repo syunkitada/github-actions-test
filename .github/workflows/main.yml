@@ -53,6 +53,8 @@ jobs:
           echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
 
       - name: debug PR
+        permissions:
+          pull-requests: write
         uses: actions/github-script@v6
         with:
           script: |
