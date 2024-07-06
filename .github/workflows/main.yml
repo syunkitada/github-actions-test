@@ -62,4 +62,4 @@ jobs:
       - uses: marocchino/sticky-pull-request-comment@v2
         with:
           message: |
-            Test sticky
+            Test sticky2
