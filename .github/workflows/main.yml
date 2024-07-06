@@ -51,3 +51,18 @@ jobs:
       - name: Summary
         run: |
           echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+
+      - name: Create comments
+         run: |
+           cat << EOF > comments
+           1st
+           2nd
+           3rd
+           EOF
+
+      - name: Post comments
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          URL: ${{ github.event.pull_request.html_url }}
+        run:
+          gh pr comment -F ./comments "${URL}"
