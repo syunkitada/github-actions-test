@@ -52,10 +52,8 @@ jobs:
         run: |
           echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
 
-    - name: PR Comment
-      permissions:
-        pull-requests: write
-      uses: actions/github-script@v6
+      - name: debug PR
+        uses: actions/github-script@v6
         with:
           script: |
             github.rest.issues.createComment({
@@ -74,8 +72,6 @@ jobs:
           EOF
 
       - name: Post comments
-        permissions:
-          pull-requests: write
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           URL: ${{ github.event.pull_request.html_url }}
