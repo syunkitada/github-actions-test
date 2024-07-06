@@ -64,11 +64,11 @@ jobs:
         with:
           header: test1
           message: |
-            Test sticky4
+            Test sticky5
 
       - name: PR comment2
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: test2
           message: |
-            Test sticky1 hoge
+            Test sticky0 hoge
