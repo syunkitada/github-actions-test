@@ -47,3 +47,7 @@ jobs:
           echo "::group::My title"
           echo "Inside group"
           echo "::endgroup::"
+
+      - name: Summary
+        run: |
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
