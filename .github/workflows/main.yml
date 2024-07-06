@@ -46,6 +46,10 @@ jobs:
           ::error file=app.js,line=5,title=piyopiyo::Missing hoo
           aaa
           "
+
+      - name: Debug
+        run: echo "hoge"
+
       - name: Create annotation2
         run: |
           echo "::debug::Set the Octocat variable"
@@ -56,12 +60,6 @@ jobs:
           app.py:1:1: F401 'os' imported but unused
           app.py:2:1: F401 're' imported but unused
           " | scripts/convert.py
-
-      - name: Test
-        run: |
-          echo "::group::My title"
-          echo "Inside group"
-          echo "::endgroup::"
 
       - name: Summary
         run: |
